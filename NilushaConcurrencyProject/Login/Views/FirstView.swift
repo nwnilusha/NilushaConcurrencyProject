@@ -12,7 +12,7 @@ struct FirstView : View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color("BgColor").edgesIgnoringSafeArea(.all)
+                //Color("BgColor").edgesIgnoringSafeArea(.all)
                 VStack(spacing: 10) {
                     Spacer()
                     Image("Onboard")
@@ -20,7 +20,7 @@ struct FirstView : View {
                     NavigationLink(destination: LoginView()
                         .navigationBarHidden(true),
                         label: {
-                        PrimaryButton(title: "Getting Started")
+                        PrimaryButton(title: "Getting Started", enabled: true)
                     })
                     
                     NavigationLink(destination: LoginView()
@@ -39,16 +39,16 @@ struct FirstView : View {
                     })
                     
                     
-                    HStack {
-                        Text("New Around Here? ")
-                        NavigationLink(destination: SignUpView()
-                            .navigationBarHidden(true),
-                            label: {
-                            Text("Sign Up")
-                                .foregroundColor(Color("PrimaryColor"))
-                        })
-                        
-                    }
+//                    HStack {
+//                        Text("New Around Here? ")
+//                        NavigationLink(destination: SignUpView()
+//                            .navigationBarHidden(true),
+//                            label: {
+//                            Text("Sign Up")
+//                                .foregroundColor(Color("PrimaryColor"))
+//                        })
+//                        
+//                    }
                 }
                 .padding()
             }
@@ -59,6 +59,7 @@ struct FirstView : View {
 
 struct PrimaryButton: View {
     var title: String
+    var enabled: Bool
     var body: some View {
         Text(title)
             .font(.title3)
@@ -66,7 +67,7 @@ struct PrimaryButton: View {
             .foregroundColor(.white)
             .frame(maxWidth:.infinity)
             .padding()
-            .background(Color("PrimaryColor"))
+            .background(enabled ? Color("PrimaryColor") : Color.gray)
             .cornerRadius(50)
             
     }
