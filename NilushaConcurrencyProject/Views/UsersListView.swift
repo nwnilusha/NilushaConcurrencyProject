@@ -14,7 +14,6 @@ struct UsersListView: View {
     var body: some View {
         NavigationView {
             List {
-                
                 ForEach(viewModel.users) { user in
                     NavigationLink{
                         PostsListView(userId: user.id)
