@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PostListViewModel: ObservableObject {
+class PostsListViewModel: ObservableObject {
     var service: Servicing
     @Published var posts: [Post] = []
     var userId: Int?
@@ -40,7 +40,7 @@ class PostListViewModel: ObservableObject {
     }
 }
 
-extension PostListViewModel {
+extension PostsListViewModel {
     convenience init(forPreview: Bool = false) {
         self.init()
         if forPreview {
