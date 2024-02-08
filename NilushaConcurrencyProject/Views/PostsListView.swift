@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PostsListView: View {
     
-    @ObservedObject var viewModel = PostListViewModel(service: Service())
+    @ObservedObject var viewModel = PostsListViewModel(service: Service())
     var userId: Int?
     var body: some View {
         List {

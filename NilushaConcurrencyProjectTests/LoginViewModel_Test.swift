@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import NilushaConcurrencyProject
 
 final class LoginViewModel_Test: XCTestCase {
 
@@ -16,20 +17,24 @@ final class LoginViewModel_Test: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    @MainActor
+    func test_LoginViewModel_validateEmailPassword_validValues() {
+        let vm = LoginViewModel()
+        vm.email = "abc@gmail.com"
+        vm.password = "abc123"
+        vm.validateEmailPassword()
+        XCTAssertEqual(vm.correctEmail, true)
+        XCTAssertEqual(vm.correctEmail, true)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    @MainActor
+    func test_LoginViewModel_validateEmailPassword_invalidValues() {
+        let vm = LoginViewModel()
+        vm.email = "abc.com"
+        vm.password = "abc"
+        vm.validateEmailPassword()
+        XCTAssertEqual(vm.correctEmail, false)
+        XCTAssertEqual(vm.correctEmail, false)
     }
-
 }

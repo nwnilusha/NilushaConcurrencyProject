@@ -1,5 +1,5 @@
 //
-//  PostListViewModel.swift
+//  PostsListViewModel.swift
 //  NilushaConcurrencyProject
 //
 //  Created by Nilusha Niwanthaka Wimalasena on 3/2/24.

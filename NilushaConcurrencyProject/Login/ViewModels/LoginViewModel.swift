@@ -18,7 +18,6 @@ final class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var correctEmail: Bool = false
     @Published var correctPassword: Bool = false
-    @Published var correctLoginDetails: Bool = false
     
     func validateEmailPassword() {
         if email.lowercased() == "abc@gmail.com" {

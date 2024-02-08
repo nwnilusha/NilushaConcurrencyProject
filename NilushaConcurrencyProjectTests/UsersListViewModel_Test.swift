@@ -6,6 +6,11 @@
 //
 
 import XCTest
+@testable import NilushaConcurrencyProject
+
+//Naming Structure: test_UnitOfWork_StateUnderTest_ExpectedBehaviour
+
+//Testing structure: Given, When, Then
 
 final class UsersListViewModel_Test: XCTestCase {
 
@@ -32,4 +37,33 @@ final class UsersListViewModel_Test: XCTestCase {
         }
     }
 
+    func test_UsersListViewModel_service() {
+        let service = Mock_Service()
+        
+        let vm = UsersListViewModel(service: service)
+        
+        XCTAssertNotNil(vm.service)
+    }
+    
+    func test_UsersListViewModel_FetchUsers_Success() {
+        let service = Mock_Service()
+        
+        let vm = UsersListViewModel(service: service)
+        Task{
+            await vm.fetchUsers()
+            XCTAssertNotNil(vm.users)
+            XCTAssertEqual(vm.users.count, 10)
+        }
+    }
+    
+    func test_UsersListViewModel_FetchUsers_Failure() {
+        let service = Mock_Service_Error()
+        
+        let vm = UsersListViewModel(service: service)
+        Task{
+            await vm.fetchUsers()
+            XCTAssertEqual(vm.showAlert, true)
+            XCTAssertNotNil(vm.errorMessage)
+        }
+    }
 }
