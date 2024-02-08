@@ -37,18 +37,6 @@ struct FirstView : View {
                             .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
                             .padding(.vertical)
                     })
-                    
-                    
-//                    HStack {
-//                        Text("New Around Here? ")
-//                        NavigationLink(destination: SignUpView()
-//                            .navigationBarHidden(true),
-//                            label: {
-//                            Text("Sign Up")
-//                                .foregroundColor(Color("PrimaryColor"))
-//                        })
-//                        
-//                    }
                 }
                 .padding()
             }

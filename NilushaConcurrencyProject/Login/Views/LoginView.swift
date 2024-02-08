@@ -57,7 +57,7 @@ struct LoginView: View {
                             }
                         
                         Button(action: {
-                            if viewModel.correctLoginDetails {
+                            if viewModel.correctEmail && viewModel.correctPassword {
                                 activated = true
                             }                            
                         }, label: {
