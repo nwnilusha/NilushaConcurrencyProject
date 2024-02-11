@@ -32,29 +32,41 @@ struct LoginView: View {
                         TextField("Email", text: $viewModel.email)
                             .font(.title3)
                             .padding()
-                            .foregroundColor(viewModel.correctEmail ? .green : .black)
                             .frame(maxWidth:.infinity)
                             .background(Color.white)
                             .cornerRadius(50)
                             .padding(.bottom, 10)
                             .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
-                            .onChange(of: viewModel.email) {
-                                viewModel.validateEmailPassword()
-                        }
+                            .overlay(
+                                ZStack{
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(.green)
+                                        .opacity(viewModel.correctEmail ? 1.0 : 0.0)
+                                }
+                                    .font(.headline)
+                                    .padding(.trailing)
+                                ,alignment: .trailing
+                            )
                         .padding(.bottom)
                         
                         SecureField("Password", text: $viewModel.password)
                             .font(.title3)
                             .padding()
-                            .foregroundColor(viewModel.correctPassword ? .green : .black)
                             .frame(maxWidth:.infinity)
                             .background(Color.white)
                             .cornerRadius(50)
                             .padding(.bottom, 10)
                             .shadow(color: Color.black.opacity(0.08), radius: 60, x: 0.0, y: 16)
-                            .onChange(of: viewModel.password) {
-                                viewModel.validateEmailPassword()
-                            }
+                            .overlay(
+                                ZStack{
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(.green)
+                                        .opacity(viewModel.correctPassword ? 1.0 : 0.0)
+                                }
+                                    .font(.headline)
+                                    .padding(.trailing)
+                                ,alignment: .trailing
+                            )
                         
                         Button(action: {
                             if viewModel.correctEmail && viewModel.correctPassword {
@@ -64,6 +76,7 @@ struct LoginView: View {
                             PrimaryButton(title: "Sign In", enabled: viewModel.correctEmail && viewModel.correctPassword)
                                 .padding(.vertical)
                         })
+                        .disabled(!(viewModel.correctEmail && viewModel.correctPassword))
                         
                         NavigationLink(destination: UsersListView()
                             .navigationBarHidden(true),

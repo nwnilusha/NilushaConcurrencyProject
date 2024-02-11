@@ -20,7 +20,7 @@ struct FirstView : View {
                     NavigationLink(destination: LoginView()
                         .navigationBarHidden(true),
                         label: {
-                        PrimaryButton(title: "Getting Started", enabled: true)
+                        PrimaryButton(title: "Getting Start", enabled: true)
                     })
                     
                     NavigationLink(destination: LoginView()
