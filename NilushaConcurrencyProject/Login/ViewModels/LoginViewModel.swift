@@ -28,6 +28,7 @@ final class LoginViewModel: ObservableObject {
     
     func emailSubscriber() {
         $email
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
             .sink { [weak self] email in
                 guard let self = self else { return }
                 if email.lowercased() == "abc@gmail.com" {
@@ -41,6 +42,7 @@ final class LoginViewModel: ObservableObject {
     
     func passwordSubscriber() {
         $password
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
             .sink { [weak self] password in
                 guard let self = self else { return }
                 if password.lowercased() == "abc123" {
